@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- iojs
+deploy:
+  provider: npm
+  email: bvdrucker@gmail.com
+  api_key:
+    secure: g0TbpapzK7M1t8IqE6ZjazuMRWSu2aPb9oDslcjmsf2ym9c8aW47TEUY5DS+nzl2o3NXXq5JguRSWZhV3z4HGs6+WXtnReg7szFmVS3DmYRq39I84Dbj23dLJqdDQGZp932qZjc1UvtFVHXmOrlFnO0hYvtBXjt2ino95zSCmBU=
+  on:
+    tags: true
+    all_branches: true
+    repo: bendrucker/creditcards-types
