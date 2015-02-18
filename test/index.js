@@ -1,7 +1,7 @@
 'use strict';
 
 var test  = require('tape');
-var types = require('../');
+var types = require('../').types;
 
 test('Visa', function (t) {
   var visa = types.visa;
