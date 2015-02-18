@@ -39,6 +39,7 @@ test('Diners Club', function (t) {
   t.ok(dc.test('38', true), 'eager 38');
   t.notOk(dc.test('37', true), 'no amex 34 conflict');
   t.notOk(dc.test('37', true), 'no amex 37 conflict');
+  t.notOk(dc.test('35', true), 'no jcb 35 conflict');
   t.end();
 });
 
@@ -52,5 +53,6 @@ test('Discover', function (t) {
 test('JCB', function (t) {
   var jcb = types.jcb;
   t.ok(jcb.test('3530111333300000'), 'normal');
+  t.ok(jcb.test('35', true), 'eager');
   t.end();
 });

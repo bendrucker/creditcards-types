@@ -33,6 +33,7 @@ exports.discover = new Type('Discover', {
 });
 
 exports.jcb = new Type('JCB', {
-  pattern: /^(?:2131|1800|35\d{3})\d{11}$/,
+  pattern: /^35\d{14}$/,
+  eagerPattern: /^35/,
   cvcLength: 3
 });
