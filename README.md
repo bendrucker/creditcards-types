@@ -23,7 +23,7 @@ Each type also provides a `test` method for verifying a card number.
 
 ##### `type.test(number, eager)` -> `Boolean`
 
-`type.test` receives a card number (`String`) and an `eager` setting (Boolean). Spaces and punctuation must be stripped from `number` before passing it. `eager` is `false` by default and defines whether the `number` will be checking against the `eagerPattern` or the full validation `pattern`. `type.test` returns a `Boolean` indicating whether or not the specified `number` passes for the given `type`. 
+`type.test` receives a card number (`String`) and an `eager` setting (`Boolean`). Spaces and punctuation must be stripped from `number` before passing it. `eager` is `false` by default and defines whether the `number` will be checking against the `eagerPattern` or the full validation `pattern`. `type.test` returns a `Boolean` indicating whether or not the specified `number` passes for the given `type`. 
 
 ```js
 var types = require('creditcards-types').types;
