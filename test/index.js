@@ -56,3 +56,10 @@ test('JCB', function (t) {
   t.ok(jcb.test('35', true), 'eager');
   t.end();
 });
+
+test('UnionPay', function (t) {
+  var up = types.unionPay;
+  t.ok(up.test('6240008631401148'), 'normal');
+  t.ok(up.test('6240008631401148000'), '19 digit');
+  t.end();
+});

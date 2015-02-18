@@ -37,3 +37,10 @@ exports.jcb = new Type('JCB', {
   eagerPattern: /^35/,
   cvcLength: 3
 });
+
+exports.unionPay = new Type('UnionPay', {
+  pattern: /^62[0-5]\d{13,16}$/,
+  eagerPattern: /^62/,
+  cvcLength: 3,
+  lunn: false
+});

@@ -6,6 +6,8 @@ function CardType (name, config) {
   extend(this, {name: name}, config);
 }
 
+CardType.prototype.lunh = true;
+
 CardType.prototype.test = function (number, eager) {
   return this[eager ? 'eagerPattern' : 'pattern'].test(number);
 };
