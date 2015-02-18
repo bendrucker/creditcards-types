@@ -42,5 +42,5 @@ exports.unionPay = new Type('UnionPay', {
   pattern: /^62[0-5]\d{13,16}$/,
   eagerPattern: /^62/,
   cvcLength: 3,
-  lunn: false
+  luhn: false
 });
