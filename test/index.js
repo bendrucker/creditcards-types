@@ -8,6 +8,7 @@ test('Visa', function (t) {
   t.ok(visa.test('4242424242424242'), 'normal');
   t.ok(visa.test('4000056655665556'), 'debit');
   t.ok(visa.test('4000056655665'), '13 digit');
+  t.ok(visa.test('4', true), 'eager');
   t.end();
 });
 
@@ -16,26 +17,35 @@ test('MasterCard', function (t) {
   t.ok(mc.test('5555555555554444'), 'normal');
   t.ok(mc.test('5200828282828210'), 'debit');
   t.ok(mc.test('5105105105105100'), 'prepaid');
+  t.ok(mc.test('5', true), 'eager');
   t.end();
 });
 
 test('American Express', function (t) {
   var amex = types.americanExpress;
-  t.ok(amex.test('378282246310005'), '37');
-  t.ok(amex.test('378282246310005'), '34');
+  t.ok(amex.test('378282246310005'), 'strict 37');
+  t.ok(amex.test('378282246310005'), 'strict 34');
+  t.ok(amex.test('37', true), 'eager 37');
+  t.ok(amex.test('34', true), 'eager 34');
   t.end();
 });
 
 test('Diners Club', function (t) {
   var dc = types.dinersClub;
-  t.ok(dc.test('30569309025904'), '30');
-  t.ok(dc.test('38520000023237'), '38');
+  t.ok(dc.test('30569309025904'), 'full 30');
+  t.ok(dc.test('38520000023237'), 'full 38');
+  t.ok(dc.test('30', true), 'eager 30');
+  t.ok(dc.test('36', true), 'eager 36');
+  t.ok(dc.test('38', true), 'eager 38');
+  t.notOk(dc.test('37', true), 'no amex 34 conflict');
+  t.notOk(dc.test('37', true), 'no amex 37 conflict');
   t.end();
 });
 
 test('Discover', function (t) {
   var discover = types.discover;
   t.ok(discover.test('6011111111111117'), 'normal');
+  t.ok(discover.test('6', true), 'eager');
   t.end();
 });
 
