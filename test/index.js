@@ -18,6 +18,7 @@ test('Visa', function (t) {
     ], 'full number');
     t.deepEqual(visa.group('4242'), ['4242'], 'partial number');
     t.deepEqual(visa.group('42424'), ['4242', '4'], 'partial group');
+    t.deepEqual(visa.group(''), [], 'no valid groups');
     t.end();
   });
   t.end();
@@ -46,6 +47,7 @@ test('American Express', function (t) {
     ], 'full number');
     t.deepEqual(amex.group('3782'), ['3782'], 'partial number');
     t.deepEqual(amex.group('378282'), ['3782', '82'], 'partial group');
+    t.deepEqual(amex.group(''), [], 'no valid groups');
     t.end();
   });
   t.end();
