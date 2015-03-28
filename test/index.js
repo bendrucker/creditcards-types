@@ -84,5 +84,12 @@ test('UnionPay', function (t) {
   var up = types.unionPay;
   t.ok(up.test('6240008631401148'), 'normal');
   t.ok(up.test('6240008631401148000'), '19 digit');
+  t.deepEqual(up.group('4242424242424242424'), [
+    '4242',
+    '4242',
+    '4242',
+    '4242',
+    '424'
+  ], 'group 19 digit');
   t.end();
 });
