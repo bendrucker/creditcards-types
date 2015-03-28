@@ -19,6 +19,12 @@ test('Visa', function (t) {
     t.deepEqual(visa.group('4242'), ['4242'], 'partial number');
     t.deepEqual(visa.group('42424'), ['4242', '4'], 'partial group');
     t.deepEqual(visa.group(''), [], 'no valid groups');
+    t.deepEqual(visa.group('4242424242424242424'), [
+      '4242',
+      '4242',
+      '4242',
+      '4242'
+    ], 'truncating');
     t.end();
   });
   t.end();

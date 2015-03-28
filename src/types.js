@@ -2,6 +2,8 @@
 
 var Type = require('./type');
 
+var group19 = /(\d{1,4})(\d{1,4})?(\d{1,4})?(\d{1,4})?(\d{1,3})?/;
+
 exports.visa = new Type('Visa', {
   pattern: /^4[0-9]{12}(?:[0-9]{3})?$/,
   eagerPattern: /^4/,
@@ -42,6 +44,7 @@ exports.jcb = new Type('JCB', {
 exports.unionPay = new Type('UnionPay', {
   pattern: /^62[0-5]\d{13,16}$/,
   eagerPattern: /^62/,
+  groupPattern: group19,
   cvcLength: 3,
   luhn: false
 });
