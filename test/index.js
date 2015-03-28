@@ -38,6 +38,16 @@ test('American Express', function (t) {
   t.ok(amex.test('378282246310005'), 'strict 34');
   t.ok(amex.test('37', true), 'eager 37');
   t.ok(amex.test('34', true), 'eager 34');
+  t.test('Grouping', function (t) {
+    t.deepEqual(amex.group('378282246310005'), [
+      '3782',
+      '822463',
+      '10005',
+    ], 'full number');
+    t.deepEqual(amex.group('3782'), ['3782'], 'partial number');
+    t.deepEqual(amex.group('378282'), ['3782', '82'], 'partial group');
+    t.end();
+  });
   t.end();
 });
 

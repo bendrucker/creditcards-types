@@ -8,10 +8,13 @@ function CardType (name, config) {
 
 CardType.prototype.luhn = true;
 
-CardType.prototype.groupPattern = /(\d{1,4})/g;
+CardType.prototype.groupPattern = /(\d{1,4})(\d{1,4})?(\d{1,4})?(\d{1,4})?/;
 
 CardType.prototype.group = function (number) {
-  return number.match(this.groupPattern);
+  return (number.match(this.groupPattern) || []).slice(1)
+    .filter(function (match) {
+      return match;
+    });
 };
 
 CardType.prototype.test = function (number, eager) {
