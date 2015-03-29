@@ -12,7 +12,7 @@ exports.visa = new Type('Visa', {
 
 exports.maestro = new Type('Maestro', {
   pattern: /^(?:5[0678]\d\d|6304|6390|67\d\d)\d{8,15}$/,
-  eagerPattern: /^(?:5[0678]|6304|6390|67\d\d)/,
+  eagerPattern: /^(5[0678]|63|67)/,
   groupPattern: group19,
   cvcLength: 3
 });
