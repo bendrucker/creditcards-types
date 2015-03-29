@@ -11,10 +11,9 @@ CardType.prototype.luhn = true;
 CardType.prototype.groupPattern = /(\d{1,4})(\d{1,4})?(\d{1,4})?(\d{1,4})?/;
 
 CardType.prototype.group = function (number) {
-  return (number.match(this.groupPattern) || []).slice(1)
-    .filter(function (match) {
-      return match;
-    });
+  return (number.match(this.groupPattern) || [])
+    .slice(1)
+    .filter(identity);
 };
 
 CardType.prototype.test = function (number, eager) {
@@ -22,3 +21,7 @@ CardType.prototype.test = function (number, eager) {
 };
 
 module.exports = CardType;
+
+function identity (value) {
+  return value;
+}
