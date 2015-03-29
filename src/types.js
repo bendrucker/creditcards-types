@@ -5,7 +5,7 @@ var Type = require('./type');
 var group19 = /(\d{1,4})(\d{1,4})?(\d{1,4})?(\d{1,4})?(\d{1,3})?/;
 
 exports.visa = new Type('Visa', {
-  pattern: /^4[0-9]{12}([0-9]{3})?$/,
+  pattern: /^4\d{12}(\d{3})?$/,
   eagerPattern: /^4/
 });
 
@@ -21,24 +21,24 @@ exports.forbrugsforeningen = new Type('Forbrugsforeningen', {
 });
 
 exports.masterCard = new Type('MasterCard', {
-  pattern: /^5[1-5][0-9]{14}$/,
+  pattern: /^5[1-5]\d{14}$/,
   eagerPattern: /^5[1-5]/
 });
 
 exports.americanExpress = new Type('American Express', {
-  pattern: /^3[47][0-9]{13}$/,
+  pattern: /^3[47]\d{13}$/,
   eagerPattern: /^3[47]/,
   groupPattern: /(\d{1,4})(\d{1,6})?(\d{1,5})?/,
   cvcLength: 4
 });
 
 exports.dinersClub = new Type('Diners Club', {
-  pattern: /^3(0[0-5]|[68][0-9])[0-9]{11}$/,
+  pattern: /^3(0[0-5]|[68]\d)\d{11}$/,
   eagerPattern: /^3(0|[68])/
 });
 
 exports.discover = new Type('Discover', {
-  pattern: /^6(011|[45][0-9]{2})[0-9]{12}$/,
+  pattern: /^6(011|[45]\d{2})\d{12}$/,
   eagerPattern: /^6([45]|01)/
 });
 
