@@ -30,12 +30,25 @@ test('Visa', function (t) {
   t.end();
 });
 
+test('Maestro', function (t) {
+  var maestro = types.maestro;
+  t.ok(maestro.test('6759649826438453'), 'normal');
+  t.ok(maestro.test('6799990100000000019'), '19 digit');
+  t.ok(maestro.test('50', true), 'eager 50');
+  t.ok(maestro.test('56', true), 'eager 56');
+  t.ok(maestro.test('58', true), 'eager 58');
+  t.ok(maestro.test('6304', true), 'eager 6304');
+  t.ok(maestro.test('6390', true), 'eager 6390');
+  t.end();
+});
+
 test('MasterCard', function (t) {
   var mc = types.masterCard;
   t.ok(mc.test('5555555555554444'), 'normal');
   t.ok(mc.test('5200828282828210'), 'debit');
   t.ok(mc.test('5105105105105100'), 'prepaid');
-  t.ok(mc.test('5', true), 'eager');
+  t.ok(mc.test('51', true), 'eager 51');
+  t.ok(mc.test('55', true), 'eager 55');
   t.end();
 });
 

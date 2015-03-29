@@ -10,9 +10,16 @@ exports.visa = new Type('Visa', {
   cvcLength: 3
 });
 
+exports.maestro = new Type('Maestro', {
+  pattern: /^(?:5[0678]\d\d|6304|6390|67\d\d)\d{8,15}$/,
+  eagerPattern: /^(?:5[0678]|6304|6390|67\d\d)/,
+  groupPattern: group19,
+  cvcLength: 3
+});
+
 exports.masterCard = new Type('MasterCard', {
   pattern: /^5[1-5][0-9]{14}$/,
-  eagerPattern: /^5/,
+  eagerPattern: /^5[1-5]/,
   cvcLength: 3
 });
 
