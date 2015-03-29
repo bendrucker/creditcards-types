@@ -112,7 +112,11 @@ test('Diners Club', function (t) {
 test('Discover', function (t) {
   var discover = types.discover;
   t.ok(discover.test('6011111111111117'), 'normal');
-  t.ok(discover.test('6', true), 'eager');
+  eagerType(t, discover, [
+    '60',
+    '64',
+    '65'
+  ]);
   t.end();
 });
 
