@@ -3,12 +3,40 @@
 var test  = require('tape');
 var types = require('../').types;
 
+function eagerType (t, type, number) {
+  if (Array.isArray(number)) {
+    return number.forEach(eagerType.bind(null, t, type));
+  }
+  t.ok(type.test(number, true), 'eager ' + number);
+  var expected = type;
+  var msg = Object.keys(types)
+    .map(function (name) {
+      return types[name];
+    })
+    .filter(function (type) {
+      return type !== expected && type.test(number, true);
+    })
+    .reduce(function (msg, conflict, index, conflicts) {
+      if (!conflicts.length) return '';
+      if (index === 0) {
+        msg += 'Eager type conflict between ';
+        msg += type.name ;
+        msg += ' and ';
+      } 
+      msg += conflict.name;
+      if (index < conflicts.length - 1) msg += ', ';
+      return msg;
+    }, '');
+
+  if (msg) t.fail(msg);
+}
+
 test('Visa', function (t) {
   var visa = types.visa;
   t.ok(visa.test('4242424242424242'), 'normal');
   t.ok(visa.test('4000056655665556'), 'debit');
   t.ok(visa.test('4000056655665'), '13 digit');
-  t.ok(visa.test('4', true), 'eager');
+  eagerType(t, visa, '4');
   t.test('Grouping', function (t) {
     t.deepEqual(visa.group('4242424242424242'), [
       '4242',
@@ -34,11 +62,14 @@ test('Maestro', function (t) {
   var maestro = types.maestro;
   t.ok(maestro.test('6759649826438453'), 'normal');
   t.ok(maestro.test('6799990100000000019'), '19 digit');
-  t.ok(maestro.test('50', true), 'eager 50');
-  t.ok(maestro.test('56', true), 'eager 56');
-  t.ok(maestro.test('58', true), 'eager 58');
-  t.ok(maestro.test('6304', true), 'eager 6304');
-  t.ok(maestro.test('6390', true), 'eager 6390');
+  eagerType(t, maestro, [
+    '50',
+    '56',
+    '57',
+    '58',
+    '6304',
+    '6390'
+  ]);
   t.end();
 });
 
@@ -47,8 +78,7 @@ test('MasterCard', function (t) {
   t.ok(mc.test('5555555555554444'), 'normal');
   t.ok(mc.test('5200828282828210'), 'debit');
   t.ok(mc.test('5105105105105100'), 'prepaid');
-  t.ok(mc.test('51', true), 'eager 51');
-  t.ok(mc.test('55', true), 'eager 55');
+  eagerType(t, mc, ['51', '55']);
   t.end();
 });
 
@@ -56,8 +86,7 @@ test('American Express', function (t) {
   var amex = types.americanExpress;
   t.ok(amex.test('378282246310005'), 'strict 37');
   t.ok(amex.test('378282246310005'), 'strict 34');
-  t.ok(amex.test('37', true), 'eager 37');
-  t.ok(amex.test('34', true), 'eager 34');
+  eagerType(t, amex, ['37', '34']);
   t.test('Grouping', function (t) {
     t.deepEqual(amex.group('378282246310005'), [
       '3782',
@@ -76,12 +105,7 @@ test('Diners Club', function (t) {
   var dc = types.dinersClub;
   t.ok(dc.test('30569309025904'), 'full 30');
   t.ok(dc.test('38520000023237'), 'full 38');
-  t.ok(dc.test('30', true), 'eager 30');
-  t.ok(dc.test('36', true), 'eager 36');
-  t.ok(dc.test('38', true), 'eager 38');
-  t.notOk(dc.test('37', true), 'no amex 34 conflict');
-  t.notOk(dc.test('37', true), 'no amex 37 conflict');
-  t.notOk(dc.test('35', true), 'no jcb 35 conflict');
+  eagerType(t, dc, ['30', '36', '38']);
   t.end();
 });
 
@@ -95,7 +119,7 @@ test('Discover', function (t) {
 test('JCB', function (t) {
   var jcb = types.jcb;
   t.ok(jcb.test('3530111333300000'), 'normal');
-  t.ok(jcb.test('35', true), 'eager');
+  eagerType(t, jcb, '35');
   t.end();
 });
 
@@ -110,5 +134,6 @@ test('UnionPay', function (t) {
     '4242',
     '424'
   ], 'group 19 digit');
+  eagerType(t, up, '62');
   t.end();
 });
