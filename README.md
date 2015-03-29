@@ -4,8 +4,6 @@ Card type definitions and methods used by [creditcards](https://github.com/bendr
 
 ## Card Types
 
-#### Currently Supported
-
 * Visa
 * MasterCard
 * American Express
@@ -13,15 +11,11 @@ Card type definitions and methods used by [creditcards](https://github.com/bendr
 * Discover
 * JCB
 * UnionPay
-
-#### Planned
-
-These cards will still validate but will be matched to the wrong brand:
-
-* Visa Electron
 * Maestro
 * Forbrugsforeningen
 * Dankort
+
+Visa Electron cards will validate and match as regular Visa cards.
 
 [Open an issue](https://github.com/bendrucker/creditcards-types/issues/new) if you need a type that's missing.
 
