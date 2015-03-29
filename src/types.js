@@ -11,13 +11,18 @@ exports.visa = new Type('Visa', {
 
 exports.maestro = new Type('Maestro', {
   pattern: /^(?:5[0678]\d\d|6304|6390|67\d\d)\d{8,15}$/,
-  eagerPattern: /^(5[0678]|63|67)/,
+  eagerPattern: /^(5(018|0[23]|[68])|6[37])/,
   groupPattern: group19
 });
 
 exports.forbrugsforeningen = new Type('Forbrugsforeningen', {
   pattern: /^600722\d{10}$/,
   eagerPattern: /^600/
+});
+
+exports.dankort = new Type('Dankort', {
+  pattern: /^5019\d{12}$/,
+  eagerPattern: /^5019/
 });
 
 exports.masterCard = new Type('MasterCard', {

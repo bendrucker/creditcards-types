@@ -63,9 +63,9 @@ test('Maestro', function (t) {
   t.ok(maestro.test('6759649826438453'), 'normal');
   t.ok(maestro.test('6799990100000000019'), '19 digit');
   eagerType(t, maestro, [
-    '50',
-    '56',
-    '57',
+    '5018',
+    '503',
+    '502',
     '58',
     '63',
     '67'
@@ -77,6 +77,13 @@ test('Forbrugsforeningen', function (t) {
   var fb = types.forbrugsforeningen;
   t.ok(fb.test('6007220000000004'), 'normal');
   eagerType(t, fb, '600');
+  t.end();
+});
+
+test('Dankort', function (t) {
+  var d = types.dankort;
+  t.ok(d.test('5019717010103742'), 'normal');
+  eagerType(t, d, '5019');
   t.end();
 });
 
