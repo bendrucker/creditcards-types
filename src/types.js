@@ -15,6 +15,11 @@ exports.maestro = new Type('Maestro', {
   groupPattern: group19
 });
 
+exports.forbrugsforeningen = new Type('Forbrugsforeningen', {
+  pattern: /^600722\d{10}$/,
+  eagerPattern: /^600/
+});
+
 exports.masterCard = new Type('MasterCard', {
   pattern: /^5[1-5][0-9]{14}$/,
   eagerPattern: /^5[1-5]/
@@ -34,7 +39,7 @@ exports.dinersClub = new Type('Diners Club', {
 
 exports.discover = new Type('Discover', {
   pattern: /^6(011|5[0-9]{2})[0-9]{12}$/,
-  eagerPattern: /^6[045]/
+  eagerPattern: /^6([45]|01)/
 });
 
 exports.jcb = new Type('JCB', {

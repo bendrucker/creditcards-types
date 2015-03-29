@@ -73,6 +73,13 @@ test('Maestro', function (t) {
   t.end();
 });
 
+test('Forbrugsforeningen', function (t) {
+  var fb = types.forbrugsforeningen;
+  t.ok(fb.test('6007220000000004'), 'normal');
+  eagerType(t, fb, '600');
+  t.end();
+});
+
 test('MasterCard', function (t) {
   var mc = types.masterCard;
   t.ok(mc.test('5555555555554444'), 'normal');
@@ -113,7 +120,7 @@ test('Discover', function (t) {
   var discover = types.discover;
   t.ok(discover.test('6011111111111117'), 'normal');
   eagerType(t, discover, [
-    '60',
+    '601',
     '64',
     '65'
   ]);
