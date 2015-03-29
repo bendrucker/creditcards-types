@@ -6,6 +6,8 @@ function CardType (name, config) {
   extend(this, {name: name}, config);
 }
 
+CardType.prototype.cvcLength = 3;
+
 CardType.prototype.luhn = true;
 
 CardType.prototype.groupPattern = /(\d{1,4})(\d{1,4})?(\d{1,4})?(\d{1,4})?/;
