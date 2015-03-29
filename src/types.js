@@ -39,7 +39,8 @@ exports.americanExpress = new Type('American Express', {
 
 exports.dinersClub = new Type('Diners Club', {
   pattern: /^3(0[0-5]|[68]\d)\d{11}$/,
-  eagerPattern: /^3(0|[68])/
+  eagerPattern: /^3(0|[68])/,
+  groupPattern: /(\d{1,4})?(\d{1,6})?(\d{1,4})?/
 });
 
 exports.discover = new Type('Discover', {
