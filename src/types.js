@@ -38,7 +38,7 @@ exports.dinersClub = new Type('Diners Club', {
 });
 
 exports.discover = new Type('Discover', {
-  pattern: /^6(011|5[0-9]{2})[0-9]{12}$/,
+  pattern: /^6(011|[45][0-9]{2})[0-9]{12}$/,
   eagerPattern: /^6([45]|01)/
 });
 
