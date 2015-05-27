@@ -61,6 +61,7 @@ test('Visa', function (t) {
 test('Maestro', function (t) {
   var maestro = types.maestro;
   t.ok(maestro.test('6759649826438453'), 'normal');
+  t.ok(maestro.test('501800000009'), '12 digit')
   t.ok(maestro.test('6799990100000000019'), '19 digit');
   eagerType(t, maestro, [
     '5018',
