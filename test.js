@@ -1,7 +1,7 @@
 'use strict';
 
 var test  = require('tape');
-var types = require('../').types;
+var types = require('./').types;
 
 function eagerType (t, type, number) {
   if (Array.isArray(number)) {

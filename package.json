@@ -2,9 +2,9 @@
   "name": "creditcards-types",
   "version": "1.2.0",
   "description": "Card type definitions and methods for creditcards",
-  "main": "./src/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "tape test/index.js | tap-spec"
+    "test": "tape test.js | tap-spec"
   },
   "repository": {
     "type": "git",
