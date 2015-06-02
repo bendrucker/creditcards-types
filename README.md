@@ -1,6 +1,6 @@
 # creditcards-types [![Build Status](https://travis-ci.org/bendrucker/creditcards-types.svg?branch=master)](https://travis-ci.org/bendrucker/creditcards-types)
 
-Card type definitions and methods used by [creditcards](https://github.com/bendrucker/creditcards), a JS library for all platforms for parsing, validating, and formatting credit card data. 
+> Card type definitions and methods used by [creditcards](https://github.com/bendrucker/creditcards), a JS library for all platforms for parsing, validating, and formatting credit card data. 
 
 ## Card Types
 
@@ -25,23 +25,72 @@ Visa Electron cards will validate and match as regular Visa cards.
 npm install creditcards-types
 ```
 
+## Usage
+
+```js
+var types = require('creditcards-types').types
+var visa = types.visa
+visa.test('4242424242424242') // true
+```
+
 ## API
 
-Card types are exposed under `types`.
+#### `new Type(config)` -> `type`
 
-Each type provides:
+Creates a new card type.
 
-* `pattern` (RegEx): A regular expression for validating a full card number.
-* `eagerPattern` (RegEx): A regular expression for guessing the card number from a partial number.
-* `groupPattern` (RegEx): A regular expression for separating the card number into formatting groups.
-* `cvcLength` (Number): The length of the CVC expected for the card type.
-* `luhn` (Boolean): Setting for whether a valid card number will pass a [Luhn check](http://en.wikipedia.org/wiki/Luhn_algorithm). Defaults to `true` and is only false for UnionPay.
+```js
+var Type = require('creditcards-types').Type
+var type = new Type(config)
+```
 
-Each type also provides the methods listed below. `number` must always be a `String` without any punctuation or spaces.
+##### config
 
-##### `type.test(number, eager)` -> `Boolean`
+*Required*  
+Type: `object`
 
-`type.test` receives a card `number` and an `eager` setting (`Boolean`).`eager` is `false` by default and defines whether the `number` will be checked against the `eagerPattern` or the full validation `pattern`. `type.test` returns a `Boolean` indicating whether or not the specified `number` passes for the given `type`. 
+The type configuration, containing the following properties:
+
+* `pattern`
+  * description: A regular expression for validating a full card number.
+  * required: `true`
+  * type: `regexp`
+* `eagerPattern`
+  * description: A regular expression for guessing the card number from a partial number.
+  * required: `true`
+  * type: `regexp`
+* `groupPattern`
+  * description: A regular expression for separating the card number into formatting. groups
+  * type: `regexp`
+  * default: `/(\d{1,4})(\d{1,4})?(\d{1,4})?(\d{1,4})?/`
+* `cvcLength`
+  * description: The length of the CVC expected for the card type.
+  * type: `number`
+  * default: `3`
+* `luhn`
+  * description: Setting for whether the card should pass a [Luhn](https://github.com/bendrucker/fast-luhn) check. Not used internally, purely informational.
+  * type: `boolean`
+  * default: `true`
+
+---
+
+#### `type.test(number, [eager])` -> `boolean`
+
+Check whether a card number matches the type.
+
+##### number
+
+*Required*  
+Type: `string`
+
+The card number to test.
+
+##### eager
+
+Type: `Boolean`  
+Default: `false`
+
+When `false`, the full card pattern is used. When `true`, the eager pattern is tested instead.
 
 ```js
 var types = require('creditcards-types').types;
@@ -54,15 +103,19 @@ visa.test('4242424242424242'); // => true
 visa.test('42', true); // => true
 ```
 
-##### `type.group(number)` -> `Array`
+---
 
-`type.group` separates the given card `number` into formatting groups. It can receive either a partial or complete card number. If the `number` exceeds the valid length for the card, any digits past the maximum length are discarded.
+#### `type.group(number)` -> `array[string]`
 
-```js
-var visa = types.visa;
-// Full groups
-visa.group('4242424242424242'); // => ['4242', '4242', '4242', '4242']
+Separates the card number into formatting groups. 
 
-// Partial groups
-visa.group('424242'); // => ['4242', '42']
-```
+##### number
+
+*Required*  
+Type: `string`
+
+The card number to group. This may be a complete or partial card number. Any digits past the type's maximum length will be discarded.
+
+## License
+
+MIT © [Ben Drucker](http://bendrucker.me)
