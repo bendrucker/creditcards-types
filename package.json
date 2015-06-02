@@ -28,5 +28,10 @@
     "standard": "^4.0.0",
     "tap-spec": "^4.0.0",
     "tape": "^4.0.0"
-  }
+  },
+  "files": [
+    "index.js",
+    "src/",
+    "readme.md"
+  ]
 }
