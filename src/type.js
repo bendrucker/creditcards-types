@@ -2,6 +2,8 @@
 
 var extend = require('xtend/mutable')
 
+module.exports = CardType
+
 function CardType (name, config) {
   extend(this, {name: name}, config)
 }
@@ -21,8 +23,6 @@ CardType.prototype.group = function (number) {
 CardType.prototype.test = function (number, eager) {
   return this[eager ? 'eagerPattern' : 'pattern'].test(number)
 }
-
-module.exports = CardType
 
 function identity (value) {
   return value
