@@ -1,7 +1,10 @@
 'use strict'
 
 var test = require('tape')
-var types = require('./').types
+var ccTypes = require('./')
+var types = ccTypes.types
+var Type = ccTypes.Type
+var find = ccTypes.find
 
 function eagerType (t, type, number) {
   if (Array.isArray(number)) {
@@ -167,5 +170,14 @@ test('UnionPay', function (t) {
     '424'
   ], 'group 19 digit')
   eagerType(t, up, '62')
+  t.end()
+})
+
+test('find', function (t) {
+  var visa = find(function (type) {
+    return type.name === 'Visa'
+  })
+  t.ok(visa)
+  t.ok(visa instanceof Type)
   t.end()
 })

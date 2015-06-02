@@ -35,6 +35,17 @@ visa.test('4242424242424242') // true
 
 ## API
 
+#### `find(callback)` -> `type` / `undefined`
+
+Iterates through the available types until the `callback` returns a truthy value. Returns the first matching type. Iteration order is undefined.
+
+##### callback
+
+*Required*  
+Type: `function`
+
+Callback that is called with card type objects and should return truthy/falsy until a match is found.
+
 #### `new Type(config)` -> `type`
 
 Creates a new card type.
