@@ -1,3 +1,3 @@
-'use strict';
+'use strict'
 
-exports.types = require('./src/types');
+exports.types = require('./src/types')
