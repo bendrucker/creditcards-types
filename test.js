@@ -39,6 +39,7 @@ test('Visa', function (t) {
   t.ok(visa.test('4242424242424242'), 'normal')
   t.ok(visa.test('4000056655665556'), 'debit')
   t.ok(visa.test('4000056655665'), '13 digit')
+  t.ok(visa.test('4917610000000000003'), '19 digit')
   eagerType(t, visa, '4')
   t.test('Grouping', function (t) {
     t.deepEqual(visa.group('4242424242424242'), [

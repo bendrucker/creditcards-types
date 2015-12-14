@@ -5,7 +5,7 @@ var Type = require('./type')
 var group19 = /(\d{1,4})(\d{1,4})?(\d{1,4})?(\d{1,4})?(\d{1,3})?/
 
 exports.visa = new Type('Visa', {
-  pattern: /^4\d{12}(\d{3})?$/,
+  pattern: /^4\d{12}(\d{3}|\d{6})?$/,
   eagerPattern: /^4/
 })
 
