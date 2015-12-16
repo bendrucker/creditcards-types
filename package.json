@@ -1,10 +1,14 @@
 {
   "name": "creditcards-types",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "Card type definitions and methods for creditcards",
   "main": "index.js",
   "scripts": {
-    "test": "standard && tape test.js | tap-spec"
+    "test": "standard && tape test.js | tap-spec",
+    "dist": "browserify index.js --s creditcardsTypes -o dist/bundle.js",
+    "dist:min": "browserify index.js --s creditcardsTypes | uglifyjs > dist/bundle.min.js",
+    "postdist": "npm run dist:min",
+    "postinstall": "npm run dist"
   },
   "repository": {
     "type": "git",
@@ -22,6 +26,8 @@
   },
   "homepage": "https://github.com/bendrucker/creditcards-types",
   "dependencies": {
+    "browserify": "^12.0.1",
+    "uglify-js": "^2.6.1",
     "xtend": "~4.0.0"
   },
   "devDependencies": {
