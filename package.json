@@ -1,6 +1,6 @@
 {
   "name": "creditcards-types",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "Card type definitions and methods for creditcards",
   "main": "index.js",
   "scripts": {
