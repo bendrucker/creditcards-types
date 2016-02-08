@@ -65,6 +65,7 @@ test('Visa', function (t) {
 test('Maestro', function (t) {
   var maestro = types.maestro
   t.ok(maestro.test('6759649826438453'), 'normal')
+  t.ok(maestro.test('6016607095058666'), '6016 range')
   t.ok(maestro.test('501800000009'), '12 digit')
   t.ok(maestro.test('6799990100000000019'), '19 digit')
   eagerType(t, maestro, [
@@ -73,7 +74,12 @@ test('Maestro', function (t) {
     '502',
     '58',
     '63',
-    '67'
+    '67',
+    '60111',
+    '60115',
+    '601185',
+    '642',
+    '66'
   ])
   t.end()
 })
@@ -141,12 +147,12 @@ test('Diners Club', function (t) {
 
 test('Discover', function (t) {
   var discover = types.discover
-  t.ok(discover.test('6011111111111117'), 'normal')
+  t.ok(discover.test('6011039964691945'), 'normal')
   t.ok(discover.test('6441111111111117'), '64')
   t.ok(discover.test('6501111111111117'), '65')
   eagerType(t, discover, [
-    '601',
-    '64',
+    '60112',
+    '644',
     '65'
   ])
   t.end()
