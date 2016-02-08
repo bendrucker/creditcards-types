@@ -6,7 +6,8 @@ var group19 = /(\d{1,4})(\d{1,4})?(\d{1,4})?(\d{1,4})?(\d{1,3})?/
 
 exports.visa = new Type('Visa', {
   pattern: /^4\d{12}(\d{3}|\d{6})?$/,
-  eagerPattern: /^4/
+  eagerPattern: /^4/,
+  groupPattern: group19
 })
 
 exports.maestro = new Type('Maestro', {
