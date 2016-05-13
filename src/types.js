@@ -27,8 +27,8 @@ exports.dankort = new Type('Dankort', {
 })
 
 exports.masterCard = new Type('MasterCard', {
-  pattern: /^5[1-5]\d{14}$/,
-  eagerPattern: /^5[1-5]/
+  pattern: /^(5[1-5]|2[2-7])\d{14}$/,
+  eagerPattern: /^(2|5[1-5])/
 })
 
 exports.americanExpress = new Type('American Express', {
