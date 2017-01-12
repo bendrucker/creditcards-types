@@ -110,6 +110,8 @@ test('MasterCard', function (t) {
   var mc = types.masterCard
   t.ok(mc.test('5555555555554444'), 'normal')
   t.ok(mc.test('2223000048400011'), '2 range')
+  t.notOk(mc.test('2723000048400016'), '1st invalid 2 range')
+  t.notOk(mc.test('2011111111111116'), '2nd invalid 2 range')
   t.ok(mc.test('5200828282828210'), 'debit')
   t.ok(mc.test('5105105105105100'), 'prepaid')
   eagerType(t, mc, ['51', '55', '22', '27'])
