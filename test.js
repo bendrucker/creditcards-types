@@ -196,6 +196,32 @@ test('UnionPay', function (t) {
   t.end()
 })
 
+test('Shinhan', function (t) {
+  var shinhan = types.shinhan
+  t.ok(shinhan.test('9123456789123456'), 'normal')
+  t.ok(shinhan.test('9123456789123456000'), '19 digit')
+  t.deepEqual(shinhan.group('9123456789123456'), [
+    '9123',
+    '4567',
+    '8912',
+    '3456'
+  ], 'group full number')
+  t.deepEqual(shinhan.group('9123456789123456000'), [
+    '9123',
+    '4567',
+    '8912',
+    '3456',
+    '000'
+  ], 'group 19 digit')
+  eagerType(t, shinhan, [
+    '9123',
+    '912',
+    '91',
+    '9'
+  ])
+  t.end()
+})
+
 test('find', function (t) {
   var visa = find(function (type) {
     return type.name === 'Visa'

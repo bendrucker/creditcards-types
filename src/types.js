@@ -60,3 +60,9 @@ exports.unionPay = new Type('UnionPay', {
   groupPattern: group19,
   luhn: false
 })
+
+exports.shinhan = new Type('Shinhan', {
+  pattern: /^9\d{15,18}$/,
+  eagerPattern: /^9/,
+  groupPattern: group19
+})
