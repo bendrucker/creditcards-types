@@ -60,3 +60,8 @@ exports.unionPay = new Type('UnionPay', {
   groupPattern: group19,
   luhn: false
 })
+
+exports.troy = new Type('Troy', {
+  pattern: /^9792\d{12}$/,
+  eagerPattern: /^9792/
+})
