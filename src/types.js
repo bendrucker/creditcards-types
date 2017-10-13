@@ -28,7 +28,7 @@ exports.dankort = new Type('Dankort', {
 
 exports.masterCard = new Type('MasterCard', {
   pattern: /^(5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)\d{12}$/,
-  eagerPattern: /^(2|5[1-5])/
+  eagerPattern: /^(2[3-7]|22[2-9]|5[1-5])/
 })
 
 exports.americanExpress = new Type('American Express', {
@@ -64,4 +64,9 @@ exports.unionPay = new Type('UnionPay', {
 exports.troy = new Type('Troy', {
   pattern: /^9792\d{12}$/,
   eagerPattern: /^9792/
+})
+
+exports.mir = new Type('Mir', {
+  pattern: /^220[0-4]\d{12}$/,
+  eagerPattern: /^220[0-4]/
 })
