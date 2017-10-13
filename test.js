@@ -119,7 +119,7 @@ test('MasterCard', function (t) {
   t.ok(mc.test('5200828282828210'), 'debit')
   t.ok(mc.test('5105105105105100'), 'prepaid')
   t.notOk(mc.test('5611111111111113'), 'invalid 5 range')
-  eagerType(t, mc, ['51', '55', '22', '27'])
+  eagerType(t, mc, ['51', '55', '222', '27'])
   t.end()
 })
 
@@ -193,6 +193,16 @@ test('UnionPay', function (t) {
     '424'
   ], 'group 19 digit')
   eagerType(t, up, '62')
+  t.end()
+})
+
+test('Mir', function (t) {
+  var mir = types.mir
+  t.ok(mir.test('2202200128683966'), 'normal')
+  eagerType(t, mir, [
+    '2204',
+    '2200'
+  ])
   t.end()
 })
 

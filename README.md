@@ -15,6 +15,7 @@
 * Forbrugsforeningen
 * Dankort
 * Troy
+* Mir
 
 Visa Electron cards will validate and match as regular Visa cards.
 
