@@ -70,6 +70,17 @@ test('Visa', function (t) {
   t.end()
 })
 
+test('Elo', function (t) {
+  var elo = types.elo
+  t.ok(elo.test('5090004243572015'), 'normal')
+  t.ok(elo.test('6516794250726603'), '651679 range')
+  eagerType(t, elo, [
+    '506250',
+    '506702'
+  ], 'full number')
+  t.end()
+})
+
 test('Maestro', function (t) {
   var maestro = types.maestro
   t.ok(maestro.test('6759649826438453'), 'normal')
