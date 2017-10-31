@@ -5,7 +5,7 @@
 ## Card Types
 
 * Visa
-* MasterCard
+* Mastercard
 * American Express
 * Diners Club
 * Discover
@@ -16,47 +16,54 @@
 * Dankort
 * Troy
 
-Visa Electron cards will validate and match as regular Visa cards.
+Visa Electron cards will validate and match as regular Visa cards. 
 
-[Open an issue](https://github.com/bendrucker/creditcards-types/issues/new) if you need a type that's missing.
+Card data can be required individually by [type](types/). The main module includes _all_ defined card types. You may want to select specific cards that your customers will use to save bytes or avoid confusion.
+
+[Open an issue](https://github.com/bendrucker/creditcards-types/issues/new) or a PR if you'd like to contribute documentation/code for a type that's missing.
 
 ## Installing
 
 ```sh
-npm install creditcards-types
+npm install --save creditcards-types
 ```
 
 ## Usage
 
 ```js
-var types = require('creditcards-types').types
-var visa = types.visa
+// finding
+var types = require('creditcards-types')
+var type = types.find(type => type.test('4', true))
+// type.name => Visa
+
+// specific types
+var visa = require('creditcards-types/types/visa')
 visa.test('4242424242424242') // true
+
+// creating custom types
+var Type = require('creditcards-types/type')
+var myCard = Type({
+  name: 'My Card',
+  pattern: /^999\d{13}$/
+  eagerPattern: /^999/,
+  luhn: false
+})
+
+var myTypes = types.concat(myCard) // myCard gets lowest priority
 ```
 
 ## API
 
-#### `find(callback)` -> `type` / `undefined`
-
-Iterates through the available types until the `callback` returns a truthy value. Returns the first matching type. Iteration order is undefined.
-
-##### callback
-
-*Required*  
-Type: `function`
-
-Callback that is called with card type objects and should return truthy/falsy until a match is found.
-
-#### `new Type(config)` -> `type`
+#### `new Type(data)` -> `type`
 
 Creates a new card type.
 
 ```js
-var Type = require('creditcards-types').Type
-var type = new Type(config)
+var Type = require('creditcards-types/type')
+var type = Type(data)
 ```
 
-##### config
+##### data
 
 *Required*  
 Type: `object`
@@ -105,14 +112,13 @@ Default: `false`
 When `false`, the full card pattern is used. When `true`, the eager pattern is tested instead.
 
 ```js
-var types = require('creditcards-types').types;
-var visa  = types.visa;
+var visa = require('creditcards-types/types/visa')
 
 // Strict type validation
-visa.test('4242424242424242'); // => true
+visa.test('4242424242424242') // => true
 
 // Eager type checking
-visa.test('42', true); // => true
+visa.test('42', true) // => true
 ```
 
 ---
