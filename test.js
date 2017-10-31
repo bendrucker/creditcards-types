@@ -2,8 +2,8 @@
 
 var test = require('tape')
 var Type = require('./type')
-var types = require('./types')
-var find = require('./').find
+var types = require('./')
+var find = types.find.bind(types)
 
 function eagerType (t, type, number) {
   if (Array.isArray(number)) {
