@@ -1,10 +1,9 @@
 'use strict'
 
 var test = require('tape')
-var ccTypes = require('./')
-var types = ccTypes.types
-var Type = ccTypes.Type
-var find = ccTypes.find
+var Type = require('./type')
+var types = require('./types')
+var find = require('./').find
 
 function eagerType (t, type, number) {
   if (Array.isArray(number)) {
@@ -12,10 +11,7 @@ function eagerType (t, type, number) {
   }
   t.ok(type.test(number, true), 'eager ' + number)
   var expected = type
-  var msg = Object.keys(types)
-    .map(function (name) {
-      return types[name]
-    })
+  var msg = types
     .filter(function (type) {
       return type !== expected && type.test(number, true)
     })
@@ -35,7 +31,7 @@ function eagerType (t, type, number) {
 }
 
 test('Visa', function (t) {
-  var visa = types.visa
+  var visa = require('./types/visa')
   t.ok(visa.test('4242424242424242'), 'normal')
   t.ok(visa.test('4000056655665556'), 'debit')
   t.ok(visa.test('4000056655665'), '13 digit')
@@ -71,7 +67,7 @@ test('Visa', function (t) {
 })
 
 test('Maestro', function (t) {
-  var maestro = types.maestro
+  var maestro = require('./types/maestro')
   t.ok(maestro.test('6759649826438453'), 'normal')
   t.ok(maestro.test('6016607095058666'), '6016 range')
   t.ok(maestro.test('501800000009'), '12 digit')
@@ -93,21 +89,21 @@ test('Maestro', function (t) {
 })
 
 test('Forbrugsforeningen', function (t) {
-  var fb = types.forbrugsforeningen
+  var fb = require('./types/forbrugsforeningen')
   t.ok(fb.test('6007220000000004'), 'normal')
   eagerType(t, fb, '600')
   t.end()
 })
 
 test('Dankort', function (t) {
-  var d = types.dankort
+  var d = require('./types/dankort')
   t.ok(d.test('5019717010103742'), 'normal')
   eagerType(t, d, '5019')
   t.end()
 })
 
 test('MasterCard', function (t) {
-  var mc = types.masterCard
+  var mc = require('./types/mastercard')
   t.ok(mc.test('5555555555554444'), 'normal')
   t.ok(mc.test('2223000048400011'), '1st valid 2 range')
   t.ok(mc.test('2234888888888882'), '2nd valid 2 range')
@@ -124,7 +120,7 @@ test('MasterCard', function (t) {
 })
 
 test('American Express', function (t) {
-  var amex = types.americanExpress
+  var amex = require('./types/american-express')
   t.ok(amex.test('378282246310005'), 'strict 37')
   t.ok(amex.test('378282246310005'), 'strict 34')
   eagerType(t, amex, ['37', '34'])
@@ -143,7 +139,7 @@ test('American Express', function (t) {
 })
 
 test('Diners Club', function (t) {
-  var dc = types.dinersClub
+  var dc = require('./types/diners-club')
   t.ok(dc.test('30569309025904'), 'full 30')
   t.ok(dc.test('38520000023237'), 'full 38')
   eagerType(t, dc, ['30', '36', '38'])
@@ -162,7 +158,7 @@ test('Diners Club', function (t) {
 })
 
 test('Discover', function (t) {
-  var discover = types.discover
+  var discover = require('./types/discover')
   t.ok(discover.test('6011039964691945'), 'normal')
   t.ok(discover.test('6441111111111117'), '64')
   t.ok(discover.test('6501111111111117'), '65')
@@ -175,14 +171,14 @@ test('Discover', function (t) {
 })
 
 test('JCB', function (t) {
-  var jcb = types.jcb
+  var jcb = require('./types/jcb')
   t.ok(jcb.test('3530111333300000'), 'normal')
   eagerType(t, jcb, '35')
   t.end()
 })
 
 test('UnionPay', function (t) {
-  var up = types.unionPay
+  var up = require('./types/unionpay')
   t.ok(up.test('6240008631401148'), 'normal')
   t.ok(up.test('6240008631401148000'), '19 digit')
   t.deepEqual(up.group('4242424242424242424'), [
