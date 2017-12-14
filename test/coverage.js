@@ -26,7 +26,7 @@ test('type coverage', function (t) {
   function onResults (err, results) {
     if (err) return t.end(err)
     results.types.forEach(
-      type => t.ok(results.tests.includes(type), type.split('.')[0])
+      type => t.ok(results.tests.indexOf(type) >= 0, type.split('.')[0])
     )
     t.end()
   }
