@@ -4,7 +4,7 @@
   "description": "Card type definitions and methods for creditcards",
   "main": "index.js",
   "scripts": {
-    "test": "standard && tape test.js test/*.js | tap-spec"
+    "test": "standard && tape test/*.js | tap-spec"
   },
   "repository": {
     "type": "git",
