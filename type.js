@@ -1,11 +1,12 @@
 'use strict'
 
-var extend = require('xtend/mutable')
+var assign = require('xtend/mutable')
 
 module.exports = CardType
 
-function CardType (name, config) {
-  extend(this, {name: name}, config)
+function CardType (data) {
+  if (!(this instanceof CardType)) return new CardType(data)
+  assign(this, data)
 }
 
 CardType.prototype.cvcLength = 3
