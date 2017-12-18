@@ -16,6 +16,14 @@ test('MasterCard', function (t) {
   t.ok(mc.test('5200828282828210'), 'debit')
   t.ok(mc.test('5105105105105100'), 'prepaid')
   t.notOk(mc.test('5611111111111113'), 'invalid 5 range')
-  eagerType(t, mc, ['51', '55', '22', '27'])
+
+  eagerType(t, mc, [
+    '51',
+    '55',
+    '222',
+    '23',
+    '27'
+  ])
+
   t.end()
 })

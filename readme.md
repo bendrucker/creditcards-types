@@ -16,6 +16,7 @@
 * Dankort
 * Troy
 * Elo
+* Mir
 
 Visa Electron cards will validate and match as regular Visa cards. 
 
