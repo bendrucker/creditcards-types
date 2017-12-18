@@ -11,5 +11,6 @@ module.exports = [
   require('./discover'),
   require('./jcb'),
   require('./unionpay'),
-  require('./troy')
+  require('./troy'),
+  require('./elo')
 ]
