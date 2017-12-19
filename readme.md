@@ -1,6 +1,8 @@
 # creditcards-types [![Build Status](https://travis-ci.org/bendrucker/creditcards-types.svg?branch=master)](https://travis-ci.org/bendrucker/creditcards-types)
 
-> Card type definitions and methods used by [creditcards](https://github.com/bendrucker/creditcards), a JS library for all platforms for parsing, validating, and formatting credit card data. 
+> Card type definitions in JavaScript modules
+
+This library powers [creditcards](https://github.com/bendrucker/creditcards), a higher level tool for parsing/formatting/validating card data. This repository focuses on [tests](#tests) and [documentation](docs). Card types are primarily represented by static values and regular expressions.
 
 ## Card Types
 
@@ -135,6 +137,26 @@ Separates the card number into formatting groups.
 Type: `string`
 
 The card number to group. This may be a complete or partial card number. Any digits past the type's maximum length will be discarded.
+
+## Tests
+
+This repository is designed to support a large volume of automated testing. There are two types of tests.
+
+#### Regression tests (~100)
+
+Traditional regression tests are included in the [`test/`](test) folder. These tests describe the regular expressions and make assertions about a few possible card patterns. Each type tests checks that expedcted eager matches for that type do not also match another card type. There's also a coverage check that will fail the test run if any type module is missing an identically named test file.
+
+#### Fuzz tests (~12,500)
+
+As an additional check, `npm test` downloads [range data from binlist](https://github.com/binlist/data). The [binlist tests](binlist-test.js):
+
+* Check the BIN range start and end to make sure they are an eager match for their corresponding type
+* Generate a random card number matching the maximum length for that type
+* Strictly test the generated number against the type
+
+This data is not guaranteed to be accurate but provides a valuable external check against the validity of the type definitions with far more assertions than could ever be written by hand. 
+
+
 
 ## License
 

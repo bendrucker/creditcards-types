@@ -9,6 +9,7 @@ function CardType (data) {
   assign(this, data)
 }
 
+CardType.prototype.digits = 16
 CardType.prototype.cvcLength = 3
 CardType.prototype.luhn = true
 CardType.prototype.groupPattern = /(\d{1,4})(\d{1,4})?(\d{1,4})?(\d{1,4})?/
