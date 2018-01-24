@@ -12,5 +12,6 @@ module.exports = [
   require('./jcb'),
   require('./unionpay'),
   require('./troy'),
-  require('./elo')
+  require('./elo'),
+  require('./uatp')
 ]

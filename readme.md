@@ -19,6 +19,7 @@ This library powers [creditcards](https://github.com/bendrucker/creditcards), a 
 * Troy
 * Elo
 * Mir
+* UATP
 
 Visa Electron cards will validate and match as regular Visa cards. 
 
