@@ -7,5 +7,5 @@ module.exports = Type({
   digits: 15,
   pattern: /^1\d{14}$/,
   eagerPattern: /^1/,
-  groupPattern: /(1\d{2})(\d{1,4})?(\d{1,4})?(\d{1,4})?/
+  groupPattern: /(1\d{3})(\d{1,5})?(\d{1,6})?/
 })
