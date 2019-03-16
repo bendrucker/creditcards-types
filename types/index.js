@@ -5,6 +5,7 @@ module.exports = [
   require('./maestro'),
   require('./forbrugsforeningen'),
   require('./dankort'),
+  require('./mada'),
   require('./mastercard'),
   require('./american-express'),
   require('./diners-club'),
@@ -13,6 +14,5 @@ module.exports = [
   require('./unionpay'),
   require('./troy'),
   require('./elo'),
-  require('./uatp'),
-  require('./mada')
+  require('./uatp')
 ]
