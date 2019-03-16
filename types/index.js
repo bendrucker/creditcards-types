@@ -13,5 +13,6 @@ module.exports = [
   require('./unionpay'),
   require('./troy'),
   require('./elo'),
-  require('./uatp')
+  require('./uatp'),
+  require('./mada')
 ]
