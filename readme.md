@@ -27,7 +27,7 @@ Card data can be required individually by [type](types/). The main module includ
 
 ## co-branded card
 
-A co-branded card is a retail merchant credit card that is issued in partnership with a specific network processor. For eg: [mada](https://www.mada.com.sa/en). You can create custom validations for these type of cards and can be included like
+A co-branded card is a retail merchant credit card that is issued in partnership with a specific network processor. For eg: [mada](https://www.mada.com.sa/en). You can create custom Card Types for these cards and can be used like
 
 ```js
 var types = [ require('creditcards-types/types/mada') ].concat(require('creditcards-types'))
