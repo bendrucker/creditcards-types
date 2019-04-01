@@ -25,6 +25,14 @@ Visa Electron cards will validate and match as regular Visa cards.
 
 Card data can be required individually by [type](types/). The main module includes _all_ defined card types. You may want to select specific cards that your customers will use to save bytes or avoid confusion.
 
+## co-branded card
+
+A co-branded card is a retail merchant credit card that is issued in partnership with a specific network processor. For eg: [mada](https://www.mada.com.sa/en). You can create custom validations for these type of cards and can be included like
+
+```js
+var types = [ require('creditcards-types/types/mada') ].concat(require('creditcards-types'))
+```
+
 [Open an issue](https://github.com/bendrucker/creditcards-types/issues/new) or a PR if you'd like to contribute documentation/code for a type that's missing.
 
 ## Installing
