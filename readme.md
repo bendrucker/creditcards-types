@@ -25,6 +25,18 @@ Visa Electron cards will validate and match as regular Visa cards.
 
 Card data can be required individually by [type](types/). The main module includes _all_ defined card types. You may want to select specific cards that your customers will use to save bytes or avoid confusion.
 
+## Co-Branded Cards
+
+The main types in this library have unique patterns that map to major card networks. In some locales, companies issue co-branded with other card networks within the major partner's BIN range. This library includes these types as modules but _does not_ include co-branded types in the main export. Custom types include:
+
+* Mada
+
+Similar to [using custom types](#usage), you can prepend optional types to the main list. Cards that previously matched as a major issuer will instead match the custom type if applicable.
+
+```js
+var types = [ require('creditcards-types/types/mada') ].concat(require('creditcards-types'))
+```
+
 [Open an issue](https://github.com/bendrucker/creditcards-types/issues/new) or a PR if you'd like to contribute documentation/code for a type that's missing.
 
 ## Installing
