@@ -92,7 +92,7 @@ The type configuration, containing the following properties:
   * required: `true`
   * type: `regexp`
 * `eagerPattern`
-  * description: A regular expression for guessing the card number from a partial number.
+  * description: A regular expression for guessing the card type from a partial number.
   * required: `true`
   * type: `regexp`
 * `groupPattern`
