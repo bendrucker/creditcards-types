@@ -39,6 +39,10 @@ var types = [ require('creditcards-types/types/mada') ].concat(require('creditca
 
 [Open an issue](https://github.com/bendrucker/creditcards-types/issues/new) or a PR if you'd like to contribute documentation/code for a type that's missing.
 
+## Test Card Numbers
+
+Some processors (e.g. [Stripe](https://stripe.com/docs/testing)) support fake card numbers used for testing payments. In some cases, these test card numbers do not fall within the actual issuing range. For example, `6011 1111 1111 1117` is provided as a Discover test card, but falls outside of the [documented range](./docs/discover.md). If you need to match these cards, you'll need to handle them outside this library or [add a custom type](#usage). 
+
 ## Installing
 
 ```sh
