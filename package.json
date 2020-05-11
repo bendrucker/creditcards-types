@@ -32,7 +32,7 @@
     "random-int": "~2.0.0",
     "run-parallel": "~1.1.6",
     "simple-get": "~3.1.0",
-    "standard": "^14.0.0",
+    "standard": "^14.3.4",
     "tap-spec": "^5.0.0",
     "tape": "^5.0.0"
   },
