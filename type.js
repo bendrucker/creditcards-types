@@ -1,6 +1,5 @@
 'use strict'
 
-
 module.exports = CardType
 
 function CardType (data) {
