@@ -21,9 +21,7 @@
     "url": "https://github.com/bendrucker/creditcards-types/issues"
   },
   "homepage": "https://github.com/bendrucker/creditcards-types",
-  "dependencies": {
-    "xtend": "~4.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "cast-array": "~1.0.1",
     "csv-parser": "~2.3.0",

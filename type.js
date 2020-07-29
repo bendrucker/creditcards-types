@@ -1,12 +1,11 @@
 'use strict'
 
-var assign = require('xtend/mutable')
 
 module.exports = CardType
 
 function CardType (data) {
   if (!(this instanceof CardType)) return new CardType(data)
-  assign(this, data)
+  Object.assign(this, data)
 }
 
 CardType.prototype.digits = 16
