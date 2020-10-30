@@ -1,8 +1,8 @@
 'use strict'
 
-var test = require('tape')
-var eagerType = require('./eager-type')
-var d = require('../types/dankort')
+const test = require('tape')
+const eagerType = require('./eager-type')
+const d = require('../types/dankort')
 
 test('Dankort', function (t) {
   t.ok(d.test('5019717010103742'), 'normal')

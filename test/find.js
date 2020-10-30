@@ -1,12 +1,12 @@
 'use strict'
 
-var test = require('tape')
-var types = require('../')
-var Type = require('../type')
-var visa = require('../types/visa')
+const test = require('tape')
+const types = require('../')
+const Type = require('../type')
+const visa = require('../types/visa')
 
 test('find', function (t) {
-  var found = types.find(function (type) {
+  const found = types.find(function (type) {
     return type.name === 'Visa'
   })
 

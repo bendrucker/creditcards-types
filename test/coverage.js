@@ -1,13 +1,13 @@
 'use strict'
 
-var test = require('tape')
-var fs = require('fs')
-var path = require('path')
-var parallel = require('run-parallel')
+const test = require('tape')
+const fs = require('fs')
+const path = require('path')
+const parallel = require('run-parallel')
 
 test('type coverage', function (t) {
-  var types = path.resolve(__dirname, '..', 'types')
-  var tests = path.resolve(__dirname, '..', 'test')
+  const types = path.resolve(__dirname, '..', 'types')
+  const tests = path.resolve(__dirname, '..', 'test')
 
   parallel({
     types: ListModules(types),

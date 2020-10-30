@@ -1,8 +1,8 @@
 'use strict'
 
-var test = require('tape')
-var eagerType = require('./eager-type')
-var mir = require('../types/mir')
+const test = require('tape')
+const eagerType = require('./eager-type')
+const mir = require('../types/mir')
 
 test('Mir', function (t) {
   t.ok(mir.test('2202200128683966'), 'normal')

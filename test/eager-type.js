@@ -1,14 +1,14 @@
 'use strict'
 
-var types = require('../')
+const types = require('../')
 
 module.exports = function eagerType (t, type, number) {
   if (Array.isArray(number)) {
     return number.forEach(eagerType.bind(null, t, type))
   }
   t.ok(type.test(number, true), 'eager ' + number)
-  var expected = type
-  var msg = types
+  const expected = type
+  const msg = types
     .filter(function (type) {
       return type !== expected && type.test(number, true)
     })

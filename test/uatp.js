@@ -1,8 +1,8 @@
 'use strict'
 
-var test = require('tape')
-var eagerType = require('./eager-type')
-var uatp = require('../types/uatp')
+const test = require('tape')
+const eagerType = require('./eager-type')
+const uatp = require('../types/uatp')
 
 test('UATP', function (t) {
   t.ok(uatp.test('181529834959453'), 'normal')

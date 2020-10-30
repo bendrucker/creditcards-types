@@ -1,8 +1,8 @@
 'use strict'
 
-var test = require('tape')
-var eagerType = require('./eager-type')
-var mc = require('../types/mastercard')
+const test = require('tape')
+const eagerType = require('./eager-type')
+const mc = require('../types/mastercard')
 
 test('MasterCard', function (t) {
   t.ok(mc.test('5555555555554444'), 'normal')

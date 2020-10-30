@@ -1,8 +1,8 @@
 'use strict'
 
-var test = require('tape')
-var eagerType = require('./eager-type')
-var maestro = require('../types/maestro')
+const test = require('tape')
+const eagerType = require('./eager-type')
+const maestro = require('../types/maestro')
 
 test('Maestro', function (t) {
   t.ok(maestro.test('6759649826438453'), 'normal')

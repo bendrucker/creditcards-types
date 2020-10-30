@@ -1,8 +1,8 @@
 'use strict'
 
-var test = require('tape')
-var eagerType = require('./eager-type')
-var amex = require('../types/american-express')
+const test = require('tape')
+const eagerType = require('./eager-type')
+const amex = require('../types/american-express')
 
 test('American Express', function (t) {
   t.ok(amex.test('378282246310005'), 'strict 37')

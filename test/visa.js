@@ -1,8 +1,8 @@
 'use strict'
 
-var test = require('tape')
-var eagerType = require('./eager-type')
-var visa = require('../types/visa')
+const test = require('tape')
+const eagerType = require('./eager-type')
+const visa = require('../types/visa')
 
 test('Visa', function (t) {
   t.ok(visa.test('4242424242424242'), 'normal')

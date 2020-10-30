@@ -1,6 +1,6 @@
 'use strict'
 
-var Type = require('../type')
+const Type = require('../type')
 
 module.exports = Type({
   name: 'Visa',

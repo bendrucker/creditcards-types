@@ -1,8 +1,8 @@
 'use strict'
 
-var test = require('tape')
-var eagerType = require('./eager-type')
-var up = require('../types/unionpay')
+const test = require('tape')
+const eagerType = require('./eager-type')
+const up = require('../types/unionpay')
 
 test('UnionPay', function (t) {
   t.ok(up.test('6240008631401148'), 'normal')
