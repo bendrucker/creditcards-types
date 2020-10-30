@@ -1,4 +1,4 @@
-# creditcards-types [![Build Status](https://travis-ci.org/bendrucker/creditcards-types.svg?branch=master)](https://travis-ci.org/bendrucker/creditcards-types)
+# creditcards-types [![tests](https://github.com/bendrucker/creditcards-types/workflows/tests/badge.svg)](https://github.com/bendrucker/creditcards-types/actions?query=workflow%3Atests)
 
 > Card type definitions in JavaScript modules
 
