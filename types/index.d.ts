@@ -1,3 +1,4 @@
 import { ICardType } from "../type";
-declare const CardType: ICardType;
-export default CardType;
+declare const CardTypes: ICardType[];
+
+export default CardTypes;
