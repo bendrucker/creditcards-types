@@ -28,7 +28,7 @@
     "luhn-generator": "~0.6.0",
     "pump": "~3.0.0",
     "random-int": "~2.0.1",
-    "run-parallel": "~1.1.10",
+    "run-parallel": "~1.2.0",
     "simple-get": "~4.0.0",
     "standard": "^16.0.0",
     "tap-spec": "^5.0.0",
