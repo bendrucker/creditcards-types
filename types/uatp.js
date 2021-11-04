@@ -1,9 +1,10 @@
 'use strict'
 
+const { CardName } = require('../cardName')
 const Type = require('../type')
 
 module.exports = Type({
-  name: 'UATP',
+  name: CardName.Uatp,
   digits: 15,
   pattern: /^1\d{14}$/,
   eagerPattern: /^1/,

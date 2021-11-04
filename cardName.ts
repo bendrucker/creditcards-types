@@ -1,0 +1,17 @@
+export enum CardName {
+  AmericanExpress = "American Express",
+  Dankort = "Dankort",
+  DinersClub = "Diners Club",
+  Discover = "Discover",
+  Elo = "Elo",
+  Forbrugsforeningen = "Forbrugsforeningen",
+  Jcb = "JCB",
+  Mada = "Mada",
+  Maestro = "Maestro",
+  MasterCard = "Mastercard",
+  Mir = "Mir",
+  Troy = "Troy",
+  Uatp = "UATP",
+  UnionPay = "UnionPay",
+  Visa = "Visa",
+}
