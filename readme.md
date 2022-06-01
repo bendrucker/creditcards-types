@@ -30,6 +30,7 @@ Card data can be required individually by [type](types/). The main module includ
 The main types in this library have unique patterns that map to major card networks. In some locales, companies issue co-branded with other card networks within the major partner's BIN range. This library includes these types as modules but _does not_ include co-branded types in the main export. Custom types include:
 
 * Mada
+* Meeza
 
 Similar to [using custom types](#usage), you can prepend optional types to the main list. Cards that previously matched as a major issuer will instead match the custom type if applicable.
 
