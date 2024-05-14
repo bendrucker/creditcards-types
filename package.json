@@ -41,6 +41,6 @@
     "types/"
   ],
   "engines": {
-    "node": ">= 10"
+    "node": ">= 18"
   }
 }
