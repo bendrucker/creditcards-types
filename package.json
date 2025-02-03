@@ -24,7 +24,7 @@
   "dependencies": {},
   "devDependencies": {
     "cast-array": "~1.0.1",
-    "csv-parser": "~3.0.0",
+    "csv-parser": "~3.2.0",
     "luhn-generator": "~0.6.0",
     "pump": "~3.0.0",
     "random-int": "~2.0.1",
