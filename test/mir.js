@@ -1,14 +1,12 @@
-'use strict'
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import eagerType from './eager-type.js'
+import mir from '../types/mir.js'
 
-const test = require('tape')
-const eagerType = require('./eager-type')
-const mir = require('../types/mir')
-
-test('Mir', function (t) {
-  t.ok(mir.test('2202200128683966'), 'normal')
-  eagerType(t, mir, [
+test('Mir', () => {
+  assert.ok(mir.test('2202200128683966'), 'normal')
+  eagerType(mir, [
     '2204',
     '2200'
   ])
-  t.end()
 })

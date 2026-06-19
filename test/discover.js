@@ -1,17 +1,15 @@
-'use strict'
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import eagerType from './eager-type.js'
+import discover from '../types/discover.js'
 
-const test = require('tape')
-const eagerType = require('./eager-type')
-const discover = require('../types/discover')
-
-test('Discover', function (t) {
-  t.ok(discover.test('6011039964691945'), 'normal')
-  t.ok(discover.test('6441111111111117'), '64')
-  t.ok(discover.test('6501111111111117'), '65')
-  eagerType(t, discover, [
+test('Discover', () => {
+  assert.ok(discover.test('6011039964691945'), 'normal')
+  assert.ok(discover.test('6441111111111117'), '64')
+  assert.ok(discover.test('6501111111111117'), '65')
+  eagerType(discover, [
     '60112',
     '644',
     '65'
   ])
-  t.end()
 })

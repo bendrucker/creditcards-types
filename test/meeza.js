@@ -1,13 +1,11 @@
-'use strict'
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import eagerType from './eager-type.js'
+import meeza from '../types/meeza.js'
 
-const test = require('tape')
-const eagerType = require('./eager-type')
-const meeza = require('../types/meeza')
-
-test('Meeza', function (t) {
-  t.ok(meeza.test('5078036246600381'), 'normal')
-  eagerType(t, meeza, [
+test('Meeza', () => {
+  assert.ok(meeza.test('5078036246600381'), 'normal')
+  eagerType(meeza, [
     '507803'
   ])
-  t.end()
 })

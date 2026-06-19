@@ -1,10 +1,15 @@
 {
   "name": "creditcards-types",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Card type definitions and methods for creditcards",
-  "main": "index.js",
+  "type": "module",
+  "exports": {
+    ".": { "types": "./index.d.ts", "default": "./index.js" },
+    "./type": { "types": "./type.d.ts", "default": "./type.js" },
+    "./types/*": { "types": "./types/*.d.ts", "default": "./types/*.js" }
+  },
   "scripts": {
-    "test": "standard && tape test/*.js | tap-spec && tape binlist-test.js && tsd && node assert-declarations.js"
+    "test": "eslint . && node --test && tsd && node assert-declarations.js"
   },
   "repository": {
     "type": "git",
@@ -23,16 +28,12 @@
   "homepage": "https://github.com/bendrucker/creditcards-types",
   "dependencies": {},
   "devDependencies": {
-    "cast-array": "~1.0.1",
+    "@eslint/js": "^10.0.1",
     "csv-parser": "~3.2.0",
+    "eslint": "^10.5.0",
+    "globals": "^17.6.0",
     "luhn-generator": "~0.6.0",
-    "pump": "~3.0.0",
-    "random-int": "~2.0.1",
-    "run-parallel": "~1.2.0",
-    "simple-get": "~4.0.0",
-    "standard": "^17.0.0",
-    "tap-spec": "^5.0.0",
-    "tape": "^5.0.1",
+    "random-int": "^3.1.0",
     "tsd": "^0.33.0"
   },
   "files": [
@@ -41,6 +42,6 @@
     "types/"
   ],
   "engines": {
-    "node": ">= 18"
+    "node": ">= 22"
   }
 }

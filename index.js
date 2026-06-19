@@ -1,3 +1,1 @@
-'use strict'
-
-module.exports = require('./types')
+export { default } from './types/index.js'

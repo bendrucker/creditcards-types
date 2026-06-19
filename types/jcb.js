@@ -1,8 +1,6 @@
-'use strict'
+import Type from '../type.js'
 
-const Type = require('../type')
-
-module.exports = Type({
+export default Type({
   name: 'JCB',
   pattern: /^35\d{14}$/,
   eagerPattern: /^35/

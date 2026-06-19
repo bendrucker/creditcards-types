@@ -23,7 +23,7 @@ This library powers [creditcards](https://github.com/bendrucker/creditcards), a 
 
 Visa Electron cards will validate and match as regular Visa cards. 
 
-Card data can be required individually by [type](types/). The main module includes _all_ defined card types. You may want to select specific cards that your customers will use to save bytes or avoid confusion.
+Card data can be imported individually by [type](types/). The main module includes _all_ defined card types. You may want to select specific cards that your customers will use to save bytes or avoid confusion.
 
 ## Co-Branded Cards
 
@@ -35,7 +35,10 @@ The main types in this library have unique patterns that map to major card netwo
 Similar to [using custom types](#usage), you can prepend optional types to the main list. Cards that previously matched as a major issuer will instead match the custom type if applicable.
 
 ```js
-var types = [ require('creditcards-types/types/mada') ].concat(require('creditcards-types'))
+import types from 'creditcards-types'
+import mada from 'creditcards-types/types/mada'
+
+const customTypes = [mada, ...types]
 ```
 
 [Open an issue](https://github.com/bendrucker/creditcards-types/issues/new) or a PR if you'd like to contribute documentation/code for a type that's missing.
@@ -54,24 +57,24 @@ npm install --save creditcards-types
 
 ```js
 // finding
-var types = require('creditcards-types')
-var type = types.find(type => type.test('4', true))
+import types from 'creditcards-types'
+const type = types.find(type => type.test('4', true))
 // type.name => Visa
 
 // specific types
-var visa = require('creditcards-types/types/visa')
+import visa from 'creditcards-types/types/visa'
 visa.test('4242424242424242') // true
 
 // creating custom types
-var Type = require('creditcards-types/type')
-var myCard = Type({
+import Type from 'creditcards-types/type'
+const myCard = Type({
   name: 'My Card',
-  pattern: /^999\d{13}$/
+  pattern: /^999\d{13}$/,
   eagerPattern: /^999/,
   luhn: false
 })
 
-var myTypes = types.concat(myCard) // myCard gets lowest priority
+const myTypes = types.concat(myCard) // myCard gets lowest priority
 ```
 
 ## API
@@ -81,8 +84,8 @@ var myTypes = types.concat(myCard) // myCard gets lowest priority
 Creates a new card type.
 
 ```js
-var Type = require('creditcards-types/type')
-var type = Type(data)
+import Type from 'creditcards-types/type'
+const type = Type(data)
 ```
 
 ##### data
@@ -134,7 +137,7 @@ Default: `false`
 When `false`, the full card pattern is used. When `true`, the eager pattern is tested instead.
 
 ```js
-var visa = require('creditcards-types/types/visa')
+import visa from 'creditcards-types/types/visa'
 
 // Strict type validation
 visa.test('4242424242424242') // => true

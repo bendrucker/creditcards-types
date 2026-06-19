@@ -1,22 +1,19 @@
-'use strict'
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import eagerType from './eager-type.js'
+import uatp from '../types/uatp.js'
 
-const test = require('tape')
-const eagerType = require('./eager-type')
-const uatp = require('../types/uatp')
-
-test('UATP', function (t) {
-  t.ok(uatp.test('181529834959453'), 'normal')
-  eagerType(t, uatp, '1')
-  t.test('Grouping', function (t) {
-    t.deepEqual(uatp.group('181529834959453'), [
+test('UATP', async (t) => {
+  assert.ok(uatp.test('181529834959453'), 'normal')
+  eagerType(uatp, '1')
+  await t.test('Grouping', () => {
+    assert.deepEqual(uatp.group('181529834959453'), [
       '1815',
       '29834',
       '959453'
     ], 'full number')
-    t.deepEqual(uatp.group('181'), ['181'], 'partial number')
-    t.deepEqual(uatp.group('181529'), ['1815', '29'], 'partial group')
-    t.deepEqual(uatp.group(''), [], 'no valid groups')
-    t.end()
+    assert.deepEqual(uatp.group('181'), ['181'], 'partial number')
+    assert.deepEqual(uatp.group('181529'), ['1815', '29'], 'partial group')
+    assert.deepEqual(uatp.group(''), [], 'no valid groups')
   })
-  t.end()
 })
