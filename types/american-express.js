@@ -1,8 +1,6 @@
-'use strict'
+import Type from '../type.js'
 
-const Type = require('../type')
-
-module.exports = Type({
+export default Type({
   name: 'American Express',
   digits: 15,
   pattern: /^3[47]\d{13}$/,

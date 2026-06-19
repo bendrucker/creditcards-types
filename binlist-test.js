@@ -1,65 +1,68 @@
-'use strict'
-
-const test = require('tape')
-const get = require('simple-get')
-const csv = require('csv-parser')
-const pump = require('pump')
-const Transform = require('stream').Transform
-const array = require('cast-array')
-const randomInt = require('random-int')
-const luhn = require('luhn-generator')
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import { Transform, Readable } from 'node:stream'
+import { pipeline } from 'node:stream/promises'
+import csv from 'csv-parser'
+import randomInt from 'random-int'
+import luhn from 'luhn-generator'
+import discover from './types/discover.js'
+import maestro from './types/maestro.js'
+import americanExpress from './types/american-express.js'
+import unionpay from './types/unionpay.js'
+import mastercard from './types/mastercard.js'
+import visa from './types/visa.js'
+import dinersClub from './types/diners-club.js'
 
 const RANGES = 'https://raw.githubusercontent.com/binlist/data/master/ranges.csv'
 
 const ccTypes = {
-  discover: [
-    require('./types/discover'),
-    require('./types/maestro')
-  ],
-  amex: require('./types/american-express'),
-  unionpay: require('./types/unionpay'),
-  mastercard: [
-    require('./types/mastercard'),
-    require('./types/maestro')
-  ],
-  visa: require('./types/visa'),
-  diners: require('./types/diners-club')
+  discover: [discover, maestro],
+  amex: americanExpress,
+  unionpay,
+  mastercard: [mastercard, maestro],
+  visa,
+  diners: dinersClub
 }
 
-test('binlist', function (t) {
-  get(RANGES, function (err, res) {
-    if (err) return t.end(err)
-    if (res.statusCode !== 200) {
-      return t.end(new Error('Exited with ' + res.statusCode))
-    }
+test('binlist', async () => {
+  const res = await fetch(RANGES)
+  assert.equal(res.status, 200, `Exited with ${res.status}`)
 
-    pump(res, csv(), verifyCard(t), t.end)
-  })
+  await pipeline(
+    Readable.fromWeb(res.body),
+    csv(),
+    verifyCard()
+  )
 })
 
-function verifyCard (t) {
+function verifyCard () {
   return new Transform({
     objectMode: true,
-    transform: function (row, enc, callback) {
-      const types = ccTypes[row.scheme] && array(ccTypes[row.scheme])
-      if (types) testCard(types, row)
-      callback()
+    transform (row, enc, callback) {
+      try {
+        const scheme = ccTypes[row.scheme]
+        const types = scheme && (Array.isArray(scheme) ? scheme : [scheme])
+        if (types) testCard(types, row)
+        callback()
+      } catch (err) {
+        callback(err)
+      }
     }
   })
 
   function testCard (types, range) {
-    ['start', 'end'].forEach(function (bound) {
+    ['start', 'end'].forEach((bound) => {
       const value = range['iin_' + bound]
       if (!value) return
 
       const output = [range.scheme, bound, value]
 
-      t.ok(types.some(type => type.test(value, true)), ['eager'].concat(output).join(' | '))
+      assert.ok(types.some((type) => type.test(value, true)), ['eager'].concat(output).join(' | '))
 
-      const type = types.find(type => type.test(value, true))
+      const type = types.find((type) => type.test(value, true))
       const generated = generateCard(value, type)
 
-      t.ok(type.test(generated), ['strict'].concat(output, generated + ' (generated)').join(' | '))
+      assert.ok(type.test(generated), ['strict'].concat(output, generated + ' (generated)').join(' | '))
     })
   }
 }

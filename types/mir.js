@@ -1,8 +1,6 @@
-'use strict'
+import Type from '../type.js'
 
-const Type = require('../type')
-
-module.exports = Type({
+export default Type({
   name: 'Mir',
   pattern: /^220[0-4]\d{12}$/,
   eagerPattern: /^220[0-4]/,

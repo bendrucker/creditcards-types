@@ -1,8 +1,6 @@
-'use strict'
+import Type from '../type.js'
 
-const Type = require('../type')
-
-module.exports = Type({
+export default Type({
   name: 'Forbrugsforeningen',
   pattern: /^600722\d{10}$/,
   eagerPattern: /^600/

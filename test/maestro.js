@@ -1,15 +1,14 @@
-'use strict'
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import eagerType from './eager-type.js'
+import maestro from '../types/maestro.js'
 
-const test = require('tape')
-const eagerType = require('./eager-type')
-const maestro = require('../types/maestro')
-
-test('Maestro', function (t) {
-  t.ok(maestro.test('6759649826438453'), 'normal')
-  t.ok(maestro.test('6016607095058666'), '6016 range')
-  t.ok(maestro.test('501800000009'), '12 digit')
-  t.ok(maestro.test('6799990100000000019'), '19 digit')
-  eagerType(t, maestro, [
+test('Maestro', () => {
+  assert.ok(maestro.test('6759649826438453'), 'normal')
+  assert.ok(maestro.test('6016607095058666'), '6016 range')
+  assert.ok(maestro.test('501800000009'), '12 digit')
+  assert.ok(maestro.test('6799990100000000019'), '19 digit')
+  eagerType(maestro, [
     '5018',
     '503',
     '502',
@@ -22,5 +21,4 @@ test('Maestro', function (t) {
     '642',
     '66'
   ])
-  t.end()
 })

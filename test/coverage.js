@@ -1,33 +1,14 @@
-'use strict'
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import { readdirSync } from 'node:fs'
+import { join } from 'node:path'
 
-const test = require('tape')
-const fs = require('fs')
-const path = require('path')
-const parallel = require('run-parallel')
+test('type coverage', () => {
+  const jsFiles = (dir) =>
+    readdirSync(join(import.meta.dirname, dir)).filter((f) => f.endsWith('.js'))
 
-test('type coverage', function (t) {
-  const types = path.resolve(__dirname, '..', 'types')
-  const tests = path.resolve(__dirname, '..', 'test')
+  const types = jsFiles(join('..', 'types'))
+  const tests = jsFiles('.')
 
-  parallel({
-    types: ListModules(types),
-    tests: ListModules(tests)
-  }, onResults)
-
-  function ListModules (dirname) {
-    return function listModules (callback) {
-      fs.readdir(dirname, function (err, files) {
-        if (err) return callback(err)
-        callback(null, files.filter(f => f.endsWith('.js')))
-      })
-    }
-  }
-
-  function onResults (err, results) {
-    if (err) return t.end(err)
-    results.types.forEach(
-      type => t.ok(results.tests.indexOf(type) >= 0, type.split('.')[0])
-    )
-    t.end()
-  }
+  types.forEach((type) => assert.ok(tests.includes(type), type.split('.')[0]))
 })

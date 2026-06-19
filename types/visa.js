@@ -1,8 +1,6 @@
-'use strict'
+import Type from '../type.js'
 
-const Type = require('../type')
-
-module.exports = Type({
+export default Type({
   name: 'Visa',
   digits: [13, 19],
   pattern: /^4\d{12}(\d{3}|\d{6})?$/,

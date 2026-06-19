@@ -1,15 +1,13 @@
-'use strict'
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import eagerType from './eager-type.js'
+import elo from '../types/elo.js'
 
-const test = require('tape')
-const eagerType = require('./eager-type')
-const elo = require('../types/elo')
-
-test('Elo', function (t) {
-  t.ok(elo.test('5090004243572015'), 'normal')
-  t.ok(elo.test('6516794250726603'), '651679 range')
-  eagerType(t, elo, [
+test('Elo', () => {
+  assert.ok(elo.test('5090004243572015'), 'normal')
+  assert.ok(elo.test('6516794250726603'), '651679 range')
+  eagerType(elo, [
     '506250',
     '506702'
-  ], 'full number')
-  t.end()
+  ])
 })

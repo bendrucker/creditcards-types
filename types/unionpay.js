@@ -1,8 +1,6 @@
-'use strict'
+import Type from '../type.js'
 
-const Type = require('../type')
-
-module.exports = Type({
+export default Type({
   name: 'UnionPay',
   pattern: /^62[0-5]\d{13,16}$/,
   eagerPattern: /^62/,

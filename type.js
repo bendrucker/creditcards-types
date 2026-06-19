@@ -1,6 +1,4 @@
-'use strict'
-
-module.exports = CardType
+export default CardType
 
 function CardType (data) {
   if (!(this instanceof CardType)) return new CardType(data)

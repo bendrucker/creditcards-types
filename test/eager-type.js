@@ -1,28 +1,14 @@
-'use strict'
+import assert from 'node:assert/strict'
+import types from '../index.js'
 
-const types = require('../')
-
-module.exports = function eagerType (t, type, number) {
+export default function eagerType (type, number) {
   if (Array.isArray(number)) {
-    return number.forEach(eagerType.bind(null, t, type))
+    return number.forEach((n) => eagerType(type, n))
   }
-  t.ok(type.test(number, true), 'eager ' + number)
-  const expected = type
-  const msg = types
-    .filter(function (type) {
-      return type !== expected && type.test(number, true)
-    })
-    .reduce(function (msg, conflict, index, conflicts) {
-      if (!conflicts.length) return ''
-      if (index === 0) {
-        msg += 'Eager type conflict between '
-        msg += type.name
-        msg += ' and '
-      }
-      msg += conflict.name
-      if (index < conflicts.length - 1) msg += ', '
-      return msg
-    }, '')
-
-  if (msg) t.fail(msg)
+  assert.ok(type.test(number, true), 'eager ' + number)
+  const conflicts = types.filter((other) => other !== type && other.test(number, true))
+  assert.ok(
+    conflicts.length === 0,
+    'Eager type conflict between ' + type.name + ' and ' + conflicts.map((c) => c.name).join(', ')
+  )
 }

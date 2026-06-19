@@ -1,23 +1,20 @@
-'use strict'
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import eagerType from './eager-type.js'
+import amex from '../types/american-express.js'
 
-const test = require('tape')
-const eagerType = require('./eager-type')
-const amex = require('../types/american-express')
-
-test('American Express', function (t) {
-  t.ok(amex.test('378282246310005'), 'strict 37')
-  t.ok(amex.test('378282246310005'), 'strict 34')
-  eagerType(t, amex, ['37', '34'])
-  t.test('Grouping', function (t) {
-    t.deepEqual(amex.group('378282246310005'), [
+test('American Express', async (t) => {
+  assert.ok(amex.test('378282246310005'), 'strict 37')
+  assert.ok(amex.test('378282246310005'), 'strict 34')
+  eagerType(amex, ['37', '34'])
+  await t.test('Grouping', () => {
+    assert.deepEqual(amex.group('378282246310005'), [
       '3782',
       '822463',
       '10005'
     ], 'full number')
-    t.deepEqual(amex.group('3782'), ['3782'], 'partial number')
-    t.deepEqual(amex.group('378282'), ['3782', '82'], 'partial group')
-    t.deepEqual(amex.group(''), [], 'no valid groups')
-    t.end()
+    assert.deepEqual(amex.group('3782'), ['3782'], 'partial number')
+    assert.deepEqual(amex.group('378282'), ['3782', '82'], 'partial group')
+    assert.deepEqual(amex.group(''), [], 'no valid groups')
   })
-  t.end()
 })
