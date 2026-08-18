@@ -1,12 +1,21 @@
 {
   "name": "creditcards-types",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Card type definitions and methods for creditcards",
   "type": "module",
   "exports": {
-    ".": { "types": "./index.d.ts", "default": "./index.js" },
-    "./type": { "types": "./type.d.ts", "default": "./type.js" },
-    "./types/*": { "types": "./types/*.d.ts", "default": "./types/*.js" }
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./type": {
+      "types": "./type.d.ts",
+      "default": "./type.js"
+    },
+    "./types/*": {
+      "types": "./types/*.d.ts",
+      "default": "./types/*.js"
+    }
   },
   "scripts": {
     "test": "eslint . && tsc && node --test && tsd && node assert-declarations.js"
