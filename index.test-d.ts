@@ -1,5 +1,5 @@
 import { expectType } from "tsd";
-import Type from "./type";
+import Type from "creditcards-types/type";
 
 const testCard = Type({
   name: "Visa",

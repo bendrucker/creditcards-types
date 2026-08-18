@@ -9,7 +9,7 @@
     "./types/*": { "types": "./types/*.d.ts", "default": "./types/*.js" }
   },
   "scripts": {
-    "test": "eslint . && node --test && tsd && node assert-declarations.js"
+    "test": "eslint . && tsc && node --test && tsd && node assert-declarations.js"
   },
   "repository": {
     "type": "git",
@@ -34,7 +34,8 @@
     "globals": "^17.6.0",
     "luhn-generator": "~0.6.0",
     "random-int": "^3.1.0",
-    "tsd": "^0.33.0"
+    "tsd": "^0.33.0",
+    "typescript": "^7.0.2"
   },
   "files": [
     "*.js",
@@ -43,5 +44,11 @@
   ],
   "engines": {
     "node": ">= 22"
+  },
+  "tsd": {
+    "compilerOptions": {
+      "module": "nodenext",
+      "moduleResolution": "nodenext"
+    }
   }
 }

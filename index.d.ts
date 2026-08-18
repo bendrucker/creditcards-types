@@ -1,4 +1,4 @@
-import { ICardType } from "./type";
+import { ICardType } from "./type.js";
 declare const CardTypes: ICardType[];
 
 export default CardTypes;
